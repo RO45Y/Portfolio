@@ -466,7 +466,7 @@
             );
         };
 
-        // About Section - FIXED IMAGE PATH
+        // About Section
         const About = () => {
             const ref = useRef(null);
             const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -484,14 +484,13 @@
                                     <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-30 blur-xl" />
                                     <div className="relative glass rounded-2xl p-2">
                                         <div className="aspect-[4/5] rounded-xl overflow-hidden bg-slate-800 relative">
-                                            <!-- Fixed: Using correct relative path for GitHub Pages deployment -->
                                             <img 
-                                                src="rohit_pic.jpeg" 
+                                                src="/mnt/kimi/upload/rohit_pic.jpeg" 
                                                 alt="Rohit Yadav"
                                                 className="w-full h-full object-cover"
                                                 onError={(e) => {
                                                     e.target.style.display = 'none';
-                                                    if(e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                    e.target.nextSibling.style.display = 'flex';
                                                 }}
                                             />
                                             <div className="hidden absolute inset-0 items-center justify-center bg-slate-800 text-slate-600">
@@ -679,7 +678,7 @@
             );
         };
 
-        // Projects Section - REMOVED SEO Content Generator and UPDATED GitHub links
+        // Projects Section
         const Projects = () => {
             const ref = useRef(null);
             const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -690,7 +689,7 @@
                     description: "A multi-agent AI system using LangGraph StateGraph with custom nodes/edges. Features FastAPI backend with async endpoints, SQLite auth, Docker containerization, and AWS-ready deployment. Integrated GPT-4o/Groq with human-in-the-loop feedback, generating client analyst reports in ~2 minutes with 100% autonomy.",
                     image: "autonomous-ai",
                     tech: ["FastAPI", "LangGraph", "GPT-4o", "Docker", "AWS"],
-                    github: "https://github.com/RO45Y/Agentic_AI",
+                    github: "https://github.com/RO45Y",
                     demo: null,
                     color: "from-blue-600 to-cyan-600"
                 },
@@ -699,7 +698,7 @@
                     description: "An AI-powered web application for real-time English conversation practice featuring dynamic progress tracking and weekly challenges. Built with Django backend with auth/progress APIs, integrated Gemma 2B via Ollama, and Docker containerization for easy deployment.",
                     image: "english-learning",
                     tech: ["Django", "Gemma 2B", "Ollama", "Docker", "TensorFlow"],
-                    github: "https://github.com/RO45Y/AI-Powered-English-Conversation-Learning-Web-Application",
+                    github: "https://github.com/RO45Y",
                     demo: null,
                     color: "from-purple-600 to-pink-600"
                 },
@@ -708,7 +707,7 @@
                     description: "A real-time weapon detection system using YOLO and OpenCV for surveillance applications. Detects firearms and knives from live camera feeds with alert mechanisms. Features computer vision-based detection with high accuracy for security and safety systems.",
                     image: "weapon-detection",
                     tech: ["Python", "YOLO", "OpenCV", "Computer Vision", "PyTorch"],
-                    github: "https://github.com/RO45Y/Weapon_detection_sys",
+                    github: "https://github.com/RO45Y",
                     demo: null,
                     color: "from-red-600 to-orange-600"
                 },
@@ -717,16 +716,25 @@
                     description: "Machine learning pipeline using Random Forest and XGBoost for restaurant rating prediction achieving 85% accuracy. Includes REST APIs serving ML predictions with Pydantic validation, handling 10K+ records, and a recommendation engine with comprehensive testing.",
                     image: "restaurant-ml",
                     tech: ["Python", "Scikit-learn", "XGBoost", "Pandas", "FastAPI"],
-                    github: "https://github.com/RO45Y/ML_Tasks",
+                    github: "https://github.com/RO45Y",
                     demo: null,
                     color: "from-green-600 to-emerald-600"
+                },
+                {
+                    title: "SEO Content Generator",
+                    description: "LLM-based content generation system for SEO optimization. Utilizes advanced NLP techniques to generate high-quality, SEO-friendly content. Features automated keyword integration and content structuring for digital marketing applications.",
+                    image: "seo-generator",
+                    tech: ["Python", "LangChain", "OpenAI API", "NLP", "FastAPI"],
+                    github: "https://github.com/RO45Y",
+                    demo: null,
+                    color: "from-yellow-600 to-amber-600"
                 },
                 {
                     title: "Yoga Pose Detection",
                     description: "Computer vision application for real-time yoga pose detection and correction using OpenCV and pose estimation algorithms. Provides feedback on pose accuracy and suggests improvements for better yoga practice sessions.",
                     image: "yoga-pose",
                     tech: ["Python", "OpenCV", "MediaPipe", "Pose Estimation", "ML"],
-                    github: "https://github.com/RO45Y/Yoga_detection_web-application",
+                    github: "https://github.com/RO45Y",
                     demo: null,
                     color: "from-indigo-600 to-purple-600"
                 }
@@ -964,6 +972,7 @@
             const handleSubmit = (e) => {
                 e.preventDefault();
                 setIsSubmitting(true);
+                // Simulate form submission
                 setTimeout(() => {
                     setIsSubmitting(false);
                     setSubmitted(true);
@@ -1164,10 +1173,12 @@
         // Main App
         const App = () => {
             useEffect(() => {
+                // Initialize Lucide icons
                 if (window.lucide) {
                     window.lucide.createIcons();
                 }
                 
+                // Re-render icons when component updates
                 const interval = setInterval(() => {
                     if (window.lucide) {
                         window.lucide.createIcons();
