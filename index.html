@@ -9,7 +9,8 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Using FontAwesome instead of Lucide for better GitHub Pages compatibility -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -318,7 +319,7 @@
                             className="md:hidden text-white"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         >
-                            {isMobileMenuOpen ? <i data-lucide="x" /> : <i data-lucide="menu" />}
+                            <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
                         </button>
                     </div>
                     
@@ -415,14 +416,14 @@
                                     className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all btn-glow flex items-center justify-center gap-2"
                                 >
                                     <span>View Projects</span>
-                                    <i data-lucide="arrow-right" className="w-5 h-5" />
+                                    <i className="fas fa-arrow-right"></i>
                                 </a>
                                 <a 
                                     href="#contact" 
                                     className="px-8 py-4 glass rounded-full font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2"
                                 >
                                     <span>Contact Me</span>
-                                    <i data-lucide="mail" className="w-5 h-5" />
+                                    <i className="fas fa-envelope"></i>
                                 </a>
                             </motion.div>
                             
@@ -433,9 +434,9 @@
                                 transition={{ delay: 1 }}
                             >
                                 {[
-                                    { icon: 'github', href: 'https://github.com/RO45Y', label: 'GitHub' },
-                                    { icon: 'linkedin', href: 'https://www.linkedin.com/in/rohityadav-64b480272', label: 'LinkedIn' },
-                                    { icon: 'mail', href: 'mailto:abhi.ya45187@gmail.com', label: 'Email' }
+                                    { icon: 'fa-brands fa-github', href: 'https://github.com/RO45Y', label: 'GitHub' },
+                                    { icon: 'fa-brands fa-linkedin', href: 'https://www.linkedin.com/in/rohityadav-64b480272', label: 'LinkedIn' },
+                                    { icon: 'fas fa-envelope', href: 'mailto:abhi.ya45187@gmail.com', label: 'Email' }
                                 ].map((social) => (
                                     <a
                                         key={social.icon}
@@ -445,7 +446,7 @@
                                         className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-blue-500/20 hover:scale-110 transition-all group"
                                         aria-label={social.label}
                                     >
-                                        <i data-lucide={social.icon} className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
+                                        <i className={`${social.icon} text-lg text-slate-400 group-hover:text-blue-400 transition-colors`}></i>
                                     </a>
                                 ))}
                             </motion.div>
@@ -466,7 +467,7 @@
             );
         };
 
-        // About Section - FIXED IMAGE PATH
+        // About Section
         const About = () => {
             const ref = useRef(null);
             const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -484,18 +485,17 @@
                                     <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-30 blur-xl" />
                                     <div className="relative glass rounded-2xl p-2">
                                         <div className="aspect-[4/5] rounded-xl overflow-hidden bg-slate-800 relative">
-                                            <!-- Fixed: Using correct relative path for GitHub Pages deployment -->
                                             <img 
                                                 src="rohit_pic.jpeg" 
                                                 alt="Rohit Yadav"
                                                 className="w-full h-full object-cover"
                                                 onError={(e) => {
                                                     e.target.style.display = 'none';
-                                                    if(e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                                                    e.target.nextSibling.style.display = 'flex';
                                                 }}
                                             />
                                             <div className="hidden absolute inset-0 items-center justify-center bg-slate-800 text-slate-600">
-                                                <i data-lucide="user" className="w-32 h-32" />
+                                                <i className="fas fa-user text-8xl"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -563,7 +563,7 @@
             const skillCategories = [
                 {
                     title: "Programming",
-                    icon: "code-2",
+                    icon: "fa-code",
                     skills: [
                         { name: "Python", level: 95 },
                         { name: "SQL", level: 85 },
@@ -573,7 +573,7 @@
                 },
                 {
                     title: "AI/ML",
-                    icon: "brain",
+                    icon: "fa-brain",
                     skills: [
                         { name: "TensorFlow", level: 90 },
                         { name: "PyTorch", level: 85 },
@@ -583,7 +583,7 @@
                 },
                 {
                     title: "Backend",
-                    icon: "server",
+                    icon: "fa-server",
                     skills: [
                         { name: "FastAPI", level: 92 },
                         { name: "Django", level: 88 },
@@ -593,7 +593,7 @@
                 },
                 {
                     title: "DevOps & Tools",
-                    icon: "wrench",
+                    icon: "fa-wrench",
                     skills: [
                         { name: "Docker", level: 80 },
                         { name: "AWS (EC2, S3)", level: 75 },
@@ -631,7 +631,7 @@
                                 >
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-                                            <i data-lucide={category.icon} className="w-6 h-6 text-white" />
+                                            <i className={`fas ${category.icon} text-white text-xl`}></i>
                                         </div>
                                         <h3 className="text-xl font-bold">{category.title}</h3>
                                     </div>
@@ -679,7 +679,7 @@
             );
         };
 
-        // Projects Section - REMOVED SEO Content Generator and UPDATED GitHub links
+        // Projects Section
         const Projects = () => {
             const ref = useRef(null);
             const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -760,11 +760,11 @@
                                     <div className={`h-48 bg-gradient-to-br ${project.color} relative overflow-hidden`}>
                                         <div className="absolute inset-0 bg-black/20" />
                                         <div className="absolute inset-0 flex items-center justify-center">
-                                            <i data-lucide="cpu" className="w-16 h-16 text-white/50" />
+                                            <i className="fas fa-microchip text-6xl text-white/50"></i>
                                         </div>
                                         <div className="absolute top-4 right-4">
                                             <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur flex items-center justify-center">
-                                                <i data-lucide="folder" className="w-5 h-5 text-white" />
+                                                <i className="fas fa-folder text-white"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -792,7 +792,7 @@
                                                 rel="noopener noreferrer"
                                                 className="flex-1 px-4 py-2 bg-slate-800 rounded-lg text-sm font-medium hover:bg-slate-700 transition-colors flex items-center justify-center gap-2"
                                             >
-                                                <i data-lucide="github" className="w-4 h-4" />
+                                                <i className="fab fa-github"></i>
                                                 Code
                                             </a>
                                             {project.demo && (
@@ -802,7 +802,7 @@
                                                     rel="noopener noreferrer"
                                                     className="flex-1 px-4 py-2 bg-blue-600 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
                                                 >
-                                                    <i data-lucide="external-link" className="w-4 h-4" />
+                                                    <i className="fas fa-external-link-alt"></i>
                                                     Demo
                                                 </a>
                                             )}
@@ -935,7 +935,7 @@
                         >
                             <div className="flex flex-col md:flex-row items-center gap-8">
                                 <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center flex-shrink-0">
-                                    <i data-lucide="graduation-cap" className="w-12 h-12 text-white" />
+                                    <i className="fas fa-graduation-cap text-4xl text-white"></i>
                                 </div>
                                 <div className="text-center md:text-left flex-1">
                                     <h3 className="text-2xl font-bold mb-2">Bachelor of Science in Computer Science</h3>
@@ -964,6 +964,7 @@
             const handleSubmit = (e) => {
                 e.preventDefault();
                 setIsSubmitting(true);
+                // Simulate form submission
                 setTimeout(() => {
                     setIsSubmitting(false);
                     setSubmitted(true);
@@ -998,7 +999,7 @@
                                 <div className="space-y-6">
                                     <a href="mailto:abhi.ya45187@gmail.com" className="flex items-center gap-4 group hoverable">
                                         <div className="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
-                                            <i data-lucide="mail" className="w-6 h-6 text-blue-400" />
+                                            <i className="fas fa-envelope text-xl text-blue-400"></i>
                                         </div>
                                         <div>
                                             <p className="text-slate-400 text-sm">Email</p>
@@ -1008,7 +1009,7 @@
                                     
                                     <a href="tel:+918591510526" className="flex items-center gap-4 group hoverable">
                                         <div className="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
-                                            <i data-lucide="phone" className="w-6 h-6 text-purple-400" />
+                                            <i className="fas fa-phone text-xl text-purple-400"></i>
                                         </div>
                                         <div>
                                             <p className="text-slate-400 text-sm">Phone</p>
@@ -1018,7 +1019,7 @@
                                     
                                     <div className="flex items-center gap-4 group hoverable">
                                         <div className="w-14 h-14 rounded-xl bg-green-500/10 flex items-center justify-center">
-                                            <i data-lucide="map-pin" className="w-6 h-6 text-green-400" />
+                                            <i className="fas fa-map-marker-alt text-xl text-green-400"></i>
                                         </div>
                                         <div>
                                             <p className="text-slate-400 text-sm">Location</p>
@@ -1031,9 +1032,9 @@
                                     <p className="text-slate-400 mb-4">Connect with me</p>
                                     <div className="flex gap-4">
                                         {[
-                                            { icon: 'github', href: 'https://github.com/RO45Y', color: 'hover:bg-slate-700' },
-                                            { icon: 'linkedin', href: 'https://www.linkedin.com/in/rohityadav-64b480272', color: 'hover:bg-blue-600' },
-                                            { icon: 'twitter', href: '#', color: 'hover:bg-sky-500' }
+                                            { icon: 'fab fa-github', href: 'https://github.com/RO45Y', color: 'hover:bg-slate-700' },
+                                            { icon: 'fab fa-linkedin', href: 'https://www.linkedin.com/in/rohityadav-64b480272', color: 'hover:bg-blue-600' },
+                                            { icon: 'fab fa-twitter', href: '#', color: 'hover:bg-sky-500' }
                                         ].map((social) => (
                                             <a
                                                 key={social.icon}
@@ -1042,7 +1043,7 @@
                                                 rel="noopener noreferrer"
                                                 className={`w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center ${social.color} transition-all hover:scale-110`}
                                             >
-                                                <i data-lucide={social.icon} className="w-5 h-5 text-white" />
+                                                <i className={`${social.icon} text-white text-lg`}></i>
                                             </a>
                                         ))}
                                     </div>
@@ -1100,13 +1101,13 @@
                                             </>
                                         ) : submitted ? (
                                             <>
-                                                <i data-lucide="check" className="w-5 h-5" />
+                                                <i className="fas fa-check"></i>
                                                 Message Sent!
                                             </>
                                         ) : (
                                             <>
                                                 Send Message
-                                                <i data-lucide="send" className="w-5 h-5" />
+                                                <i className="fas fa-paper-plane"></i>
                                             </>
                                         )}
                                     </button>
@@ -1129,13 +1130,13 @@
                             </p>
                             <div className="flex gap-6">
                                 <a href="https://github.com/RO45Y" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
-                                    <i data-lucide="github" className="w-5 h-5" />
+                                    <i className="fab fa-github text-xl"></i>
                                 </a>
                                 <a href="https://www.linkedin.com/in/rohityadav-64b480272" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
-                                    <i data-lucide="linkedin" className="w-5 h-5" />
+                                    <i className="fab fa-linkedin text-xl"></i>
                                 </a>
                                 <a href="mailto:abhi.ya45187@gmail.com" className="text-slate-400 hover:text-white transition-colors">
-                                    <i data-lucide="mail" className="w-5 h-5" />
+                                    <i className="fas fa-envelope text-xl"></i>
                                 </a>
                             </div>
                         </div>
@@ -1163,20 +1164,6 @@
 
         // Main App
         const App = () => {
-            useEffect(() => {
-                if (window.lucide) {
-                    window.lucide.createIcons();
-                }
-                
-                const interval = setInterval(() => {
-                    if (window.lucide) {
-                        window.lucide.createIcons();
-                    }
-                }, 1000);
-                
-                return () => clearInterval(interval);
-            }, []);
-            
             return (
                 <div className="relative">
                     <CustomCursor />
